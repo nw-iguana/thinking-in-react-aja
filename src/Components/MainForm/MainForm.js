@@ -1,4 +1,7 @@
 import React from 'react';
+import FeatureForm from './FeatureForm'
+import Options from './Options'
+import MainFormSection from './MainFormSection'
 
 class MainForm extends React.Component {
 
@@ -8,31 +11,27 @@ class MainForm extends React.Component {
         const options = this.props.features[key].map((item, index) => {
           const selectedClass = item.name === this.props.selected[key].name ? 'feature__selected' : '';
           const featureClass = 'feature__option ' + selectedClass;
-          return <li key={index} className="feature__item">
-            <div className={featureClass}
-              
-              onClick={e => this.props.updateFeature(key, item)}>
-                { item.name }
-                ({ new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
-                  .format(item.cost) })
-            </div>
-          </li>
+          return (
+            <Options 
+            key={key}
+            featureClass={featureClass} 
+            selectedClass={selectedClass} 
+            item={item} 
+            index={index} 
+            mapKey={key}
+            updateFeature={(key, index) => this.props.updateFeature(key, index)}/>
+          )
         });
 
-        return <div className="feature" key={key}>
-          <div className="feature__name">{key}</div>
-          <ul className="feature__list">
-            { options }
-          </ul>
-        </div>
+        return <FeatureForm 
+          key={key}
+          mapKey={key} 
+          options={options}/>
       });
 
 
     return (
-        <section className="main__form">
-          <h3>TECH SPECS AND CUSTOMIZATIONS</h3>
-          { features }
-        </section>
+        <MainFormSection features={features} />
     )
   }
 }
