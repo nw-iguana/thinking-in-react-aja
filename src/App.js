@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './Components/Header/Header';
-import MainForm from './Components/MainForm/MainForm';
-import MainSummary from './Components/MainSummary/MainSummary';
+import Header from './Components/Header';
+import MainForm from './Components/MainForm';
+import Checkout from './Components/Checkout';
 
 class App extends Component {
   constructor(props) {
@@ -48,7 +48,10 @@ class App extends Component {
           selected={this.state.selected}
           updateFeature={this.updateFeature}
         />
-        <MainSummary selected={this.state.selected} />
+        <Checkout
+          selected={this.state.selected}
+          features={this.props.features}
+        />
       </div>
     );
   }
