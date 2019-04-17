@@ -3,6 +3,7 @@ import './App.css';
 import Header from './Components/Header';
 import MainForm from './Components/MainForm';
 import Checkout from './Components/Checkout';
+import MainSummary from './Components/MainSummary/MainSummary';
 
 class App extends Component {
   constructor(props) {
@@ -48,10 +49,7 @@ class App extends Component {
           selected={this.state.selected}
           updateFeature={this.updateFeature}
         />
-        <Checkout
-          selected={this.state.selected}
-          features={this.props.features}
-        />
+        <MainSummary selected={this.state.selected} />
       </div>
     );
   }
